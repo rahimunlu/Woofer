@@ -73,11 +73,34 @@ export default function App() {
       </section>
 
       {/* FEATURES SECTION */}
-      <section className="relative py-32 px-8">
-        <div className="absolute top-0 left-0 w-full h-full z-[-1] overflow-hidden opacity-20">
-          <HLSVideo src="https://stream.mux.com/Jwr2RhmsNrd6GEspBNgm02vJsRZAGlaoQIh4AucGdASw.m3u8" autoPlay loop muted playsInline className="w-full h-full object-cover" />
+      <section className="relative py-32 px-8 overflow-hidden bg-surface-container-lowest">
+        {/* Premium Precision Background Animation */}
+        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+          {/* Animated Dot Grid */}
+          <div className="absolute inset-0 bg-[radial-gradient(rgba(134,239,172,0.25)_1px,transparent_1px)] [background-size:32px_32px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] opacity-80"></div>
+          
+          {/* Glowing Orbs */}
+          <div className="absolute top-0 left-1/4 w-[40rem] h-[40rem] bg-emerald-500/20 rounded-full blur-[100px] animate-pulse-glow"></div>
+          <div className="absolute bottom-0 right-1/4 w-[40rem] h-[40rem] bg-purple-600/20 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '4s' }}></div>
+
+          {/* Precision Rings (SVG HUD) */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-70 flex items-center justify-center">
+            <svg viewBox="0 0 800 800" className="absolute w-full h-full animate-spin-slow">
+              <circle cx="400" cy="400" r="390" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-emerald-500/40" strokeDasharray="4 12" />
+              <circle cx="400" cy="400" r="300" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-emerald-500/30" strokeDasharray="1 8" />
+            </svg>
+            <svg viewBox="0 0 800 800" className="absolute w-full h-full animate-spin-slow-reverse">
+              <circle cx="400" cy="400" r="345" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-emerald-500/30" strokeDasharray="20 10 5 10" />
+            </svg>
+            {/* Crosshairs */}
+            <div className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
+            <div className="absolute h-full w-[1px] bg-gradient-to-b from-transparent via-emerald-500/50 to-transparent"></div>
+            {/* Center node */}
+            <div className="absolute w-3 h-3 bg-emerald-400 rounded-full shadow-[0_0_20px_rgba(52,211,153,1)]"></div>
+          </div>
         </div>
-        <div className="max-w-7xl mx-auto">
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-hero-heading text-4xl md:text-5xl text-white mb-4">Precision Earning</h2>
             <p className="text-on-surface-variant max-w-xl mx-auto">Engineered for efficiency, Woofer strips away the clutter to focus on what matters: your time and your rewards.</p>

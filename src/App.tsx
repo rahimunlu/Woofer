@@ -132,8 +132,9 @@ export default function App() {
       </section>
 
       {/* CHESS SECTION 1 */}
-      <section className="py-32 px-8 bg-surface-container-lowest">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+      <section className="relative py-32 px-8 bg-black">
+        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#120a1d] via-[#120a1d]/80 to-transparent pointer-events-none z-0"></div>
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
           <div className="w-full md:w-1/2 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/50 aspect-video relative">
             <HLSVideo src="https://stream.mux.com/1CCfG6mPC7LbMOAs6iBOfPeNd3WaKlZuHuKHp00G62j8.m3u8" autoPlay loop muted playsInline className="w-full h-full object-cover" />
           </div>
@@ -160,8 +161,8 @@ export default function App() {
       </section>
 
       {/* REVERSE CHESS SECTION */}
-      <section className="py-32 px-8">
-        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-16">
+      <section className="relative py-32 px-8 bg-black">
+        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-16 relative z-10">
           <div className="w-full md:w-1/2 grid grid-cols-2 gap-4">
             <div className="liquid-glass p-8 rounded-3xl">
               <div className="text-3xl font-headline font-bold text-emerald-300 mb-2">$5</div>
@@ -197,10 +198,11 @@ export default function App() {
 
       {/* NUMBERS SECTION */}
       <section className="relative py-48 px-8 flex flex-col items-center justify-center overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-0"></div>
         <div className="absolute top-0 left-0 w-full h-full z-[-1] overflow-hidden opacity-40">
           <HLSVideo src="https://stream.mux.com/Kec29dVyJgiPdtWaQtPuEiiGHkJIYQAVUJcNiIHUYeo.m3u8" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         </div>
-        <div className="z-10 text-center">
+        <div className="z-10 text-center relative">
           <div className="text-sm font-label uppercase tracking-[0.4em] text-emerald-300 mb-6">Total Rewards Distributed</div>
           <div className="text-[8rem] md:text-[15rem] font-headline font-extrabold text-white leading-none tracking-tighter drop-shadow-2xl">
             $4.7M

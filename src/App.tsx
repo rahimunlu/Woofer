@@ -24,7 +24,7 @@ export default function App() {
       </nav>
 
       {/* HERO SECTION */}
-      <section className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-100">
             <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260309_042944_4a2205b7-b061-490a-852b-92d9e9955ce9.mp4" type="video/mp4" />
@@ -56,15 +56,15 @@ export default function App() {
         </div>
 
         {/* Social Proof Marquee */}
-        <div className="relative w-full mt-16 z-10 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <div className="relative w-full mt-24 z-10 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <div className="flex overflow-hidden select-none gap-16 opacity-40">
             <div className="flex shrink-0 justify-around gap-16 min-w-full animate-scroll">
-              {['VORTEX', 'NIMBUS', 'PRYSMA', 'CIRRUS', 'KYNDER', 'HALCYN'].map(brand => (
+              {['BitLabs', 'AdGate Media', 'AyeT-Studios', 'RevU', 'Torox', 'Lootably', 'AdGem', 'Monlix'].map(brand => (
                 <span key={brand} className="text-2xl font-headline font-bold">{brand}</span>
               ))}
             </div>
             <div aria-hidden="true" className="flex shrink-0 justify-around gap-16 min-w-full animate-scroll">
-              {['VORTEX', 'NIMBUS', 'PRYSMA', 'CIRRUS', 'KYNDER', 'HALCYN'].map(brand => (
+              {['BitLabs', 'AdGate Media', 'AyeT-Studios', 'RevU', 'Torox', 'Lootably', 'AdGem', 'Monlix'].map(brand => (
                 <span key={brand + '-2'} className="text-2xl font-headline font-bold">{brand}</span>
               ))}
             </div>

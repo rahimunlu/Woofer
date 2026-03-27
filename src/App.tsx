@@ -6,10 +6,58 @@
 import { Zap, Gamepad2, Wallet, CheckCircle2, Star, Globe, MessageSquare, Send } from 'lucide-react';
 import { HLSVideo } from './components/HLSVideo';
 import { motion } from 'motion/react';
+import React, { useRef, useState } from 'react';
+import { ReactLenis } from 'lenis/react';
+
+function SpotlightCard({ children, className = "" }: { children: React.ReactNode, className?: string }) {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!divRef.current) return;
+    const rect = divRef.current.getBoundingClientRect();
+    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  return (
+    <div
+      ref={divRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setOpacity(1)}
+      onMouseLeave={() => setOpacity(0)}
+      className={`relative overflow-hidden ${className}`}
+    >
+      <div
+        className="pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-500 ease-in-out"
+        style={{
+          opacity,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,255,255,0.06), transparent 40%)`,
+        }}
+      />
+      {children}
+    </div>
+  );
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
+};
+
+const fadeUpItem = {
+  hidden: { opacity: 0, y: 30, filter: 'blur(8px)' },
+  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+};
 
 export default function App() {
   return (
+    <ReactLenis root>
     <div className="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+      <div className="bg-noise"></div>
       {/* TopNavBar */}
       <nav className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-3 rounded-full mt-6 mx-auto max-w-5xl bg-purple-950/40 backdrop-blur-xl border border-emerald-500/20 shadow-[0_20px_40px_rgba(24,16,35,0.6)]">
         <div className="text-2xl font-bold tracking-tighter text-emerald-300">Woofer</div>
@@ -32,29 +80,29 @@ export default function App() {
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/30 to-background"></div>
         </div>
-        <div className="relative z-10 max-w-4xl flex flex-col items-center mt-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-bold uppercase tracking-widest mb-8">
+        <motion.div variants={staggerContainer} initial="hidden" animate="show" className="relative z-10 max-w-4xl flex flex-col items-center mt-16">
+          <motion.div variants={fadeUpItem} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-bold uppercase tracking-widest mb-8">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             New Offers Live!
-          </div>
-          <h1 className="text-hero-heading text-5xl md:text-8xl text-white mb-6">
+          </motion.div>
+          <motion.h1 variants={fadeUpItem} className="text-hero-heading text-5xl md:text-8xl text-white mb-6">
             Complete Offers.<br />Play Games.<br /><span className="text-primary-fixed-dim">Cash Out Fast.</span>
-          </h1>
-          <p className="text-hero-sub text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-10">
+          </motion.h1>
+          <motion.p variants={fadeUpItem} className="text-hero-sub text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-10">
             The world's most rewarding task platform. Earn real liquidity by interacting with the brands and games you already love. No hoops, just high-yield payouts.
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
+          </motion.p>
+          <motion.div variants={fadeUpItem} className="flex flex-col md:flex-row gap-4 justify-center">
             <button className="bg-primary-fixed-dim text-on-primary-fixed text-lg px-10 py-4 rounded-full font-bold hover:shadow-[0_0_30px_rgba(115,219,154,0.3)] transition-all active:scale-95">
               Start Free Right Now
             </button>
             <button className="bg-surface-container-high/50 backdrop-blur-md text-white border border-outline-variant/30 text-lg px-10 py-4 rounded-full font-bold hover:bg-surface-container-highest transition-all active:scale-95">
               See How It Works
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Social Proof Marquee */}
         <div className="relative w-full mt-24 z-10 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
@@ -135,7 +183,13 @@ export default function App() {
       {/* CHESS SECTION 1 */}
       <section className="relative py-32 px-8 bg-black">
         <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#120a1d] via-[#120a1d]/80 to-transparent pointer-events-none z-0"></div>
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10"
+        >
           <div className="w-full md:w-1/2 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/50 aspect-video relative">
             <HLSVideo src="https://stream.mux.com/1CCfG6mPC7LbMOAs6iBOfPeNd3WaKlZuHuKHp00G62j8.m3u8" autoPlay loop muted playsInline className="w-full h-full object-cover" />
           </div>
@@ -158,12 +212,18 @@ export default function App() {
             </ul>
             <button className="bg-surface-container-high text-emerald-300 border border-emerald-500/20 px-8 py-3 rounded-full font-bold hover:bg-emerald-500/10 transition-all">Explore Marketplace</button>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* REVERSE CHESS SECTION */}
       <section className="relative py-32 px-8 bg-black">
-        <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-16 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-16 relative z-10"
+        >
           <div className="w-full md:w-1/2 grid grid-cols-2 gap-4">
             <div className="liquid-glass p-8 rounded-3xl">
               <div className="text-3xl font-headline font-bold text-emerald-300 mb-2">$5</div>
@@ -194,7 +254,7 @@ export default function App() {
           <div className="hidden md:block w-full md:w-1/2 rounded-[2.5rem] overflow-hidden shadow-2xl aspect-video relative">
             <HLSVideo src="https://stream.mux.com/f0001qPDy00mvqP023lqK3lWx31uHvxirFCHK1yNLczzqxY.m3u8" autoPlay loop muted playsInline className="w-full h-full object-cover" />
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* NUMBERS SECTION */}
@@ -299,7 +359,13 @@ export default function App() {
 
       {/* TESTIMONIALS SECTION */}
       <section className="py-32 px-8">
-        <div className="max-w-7xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-7xl mx-auto"
+        >
           <div className="text-center mb-20">
             <h2 className="text-hero-heading text-4xl text-white">The Woofer Community</h2>
           </div>
@@ -348,7 +414,7 @@ export default function App() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* CTA + FOOTER SECTION */}
@@ -424,5 +490,6 @@ export default function App() {
         </footer>
       </section>
     </div>
+    </ReactLenis>
   );
 }

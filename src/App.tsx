@@ -232,50 +232,9 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* REVERSE CHESS SECTION */}
-      <section className="relative py-32 px-8 bg-black">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-16 relative z-10"
-        >
-          <div className="w-full md:w-1/2 grid grid-cols-2 gap-4">
-            <div className="liquid-glass p-8 rounded-3xl">
-              <div className="text-3xl font-headline font-bold text-emerald-300 mb-2">$5</div>
-              <div className="text-sm font-label uppercase text-zinc-500 tracking-widest">Min Cashout</div>
-            </div>
-            <div className="liquid-glass p-8 rounded-3xl translate-y-6">
-              <div className="text-3xl font-headline font-bold text-emerald-300 mb-2">24h</div>
-              <div className="text-sm font-label uppercase text-zinc-500 tracking-widest">Delivery</div>
-            </div>
-            <div className="liquid-glass p-8 rounded-3xl">
-              <div className="text-3xl font-headline font-bold text-emerald-300 mb-2">100%</div>
-              <div className="text-sm font-label uppercase text-zinc-500 tracking-widest">Safe Layer</div>
-            </div>
-            <div className="liquid-glass p-8 rounded-3xl translate-y-6">
-              <div className="text-3xl font-headline font-bold text-emerald-300 mb-2">15k+</div>
-              <div className="text-sm font-label uppercase text-zinc-500 tracking-widest">Daily Users</div>
-            </div>
-          </div>
-          <div className="w-full md:w-1/2 space-y-8">
-            <h2 className="text-hero-heading text-4xl md:text-5xl text-white leading-tight">Engineered for <span className="text-primary-fixed-dim">Velocity.</span></h2>
-            <p className="text-hero-sub text-lg text-on-surface-variant">Your earnings shouldn't be trapped in digital limbo. We've built a direct pipeline from task completion to your bank account or crypto wallet.</p>
-            <div className="flex items-center gap-6 py-4">
-              <img alt="Visa" className="h-6 opacity-60 grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEKg1-f1Sm4Nft0b-U2G1KCA0AppPtGapOSx0-6huIkPhE-tc8e85bSkAP13Lp3Ln0BsVo5X7FKOyem0LoPVkSpMKLYLhtKG-1a6JVmaxManQuzukHkKdAonxldvX39LoHJv7yi2Y3OKY6XQQVB3ZW0htNliqRqU7eXkLCvGnKqDMko3rgP8bhGCYl5jCXLJPi1R3Ic97ucjgTirbyfVd0nwAzVv7mnjsl8UqHwyZ0qKW7aCP3RX_F6uv75rZT9t9Aj6dJOXkL1BI" />
-              <img alt="PayPal" className="h-6 opacity-60 grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOhfdiJuI2oN65ba_Sp7-mEaUOPNKzpPDf5dD51IA6-bwLYzAIYkQhDNe7-aGaPxfU6lJ_LCMI30_X8veMmTkgCOwx_Jr2KMUTJTyiZpYmIB4UJi8eDNHUoxE3bC0sBCET6gxQAWizLgGjVLtyr0rL7VnRCX8rP15I-3RZct3YcWUl4_0Zbr5OaksMIZJLPi_Hl85lmrSCwztqS8kINTTAjd1hH7vFnt3w0kCMjE3kqV4NKqfGsO6-18nYe4ov8DpgmRcOpQ5wdYQ" />
-              <img alt="Bitcoin" className="h-6 opacity-60 grayscale hover:grayscale-0 transition-all" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbWLnQPW4WUzIAkI1aPpkxr1Si84CBRmaVH6GmDjVdXX75qVLi9OhlXRrwCRPRiWm0hpMmQqC4qr32gFrGJfjgUwOFl-4c7aAlYPyOKydxGWVdyJsVBEFm-NHm_bRyINvZ1J7qR3L1C9B4KK1Z10RAW7PDpc8PE7Moc_TiwwtMSgG7cXRb-5v9Dz327IRvZts_hibYYvUbxp72sPIwREFwjvt47BG0p0jisSLVjyDOEmdxwclThwkc102U4277K_PRDzreCCCbNZw" />
-            </div>
-          </div>
-          <div className="hidden md:block w-full md:w-1/2 rounded-[2.5rem] overflow-hidden shadow-2xl aspect-video relative">
-            <HLSVideo src="https://stream.mux.com/f0001qPDy00mvqP023lqK3lWx31uHvxirFCHK1yNLczzqxY.m3u8" autoPlay loop muted playsInline className="w-full h-full object-cover" />
-          </div>
-        </motion.div>
-      </section>
-
       {/* NUMBERS SECTION */}
       <section className="relative py-48 px-8 flex flex-col items-center justify-center overflow-hidden">
+        {/* Smooth transition from the black background of the previous section */}
         <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-10"></div>
         
         {/* Premium Background Animations */}

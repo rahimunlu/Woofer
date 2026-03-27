@@ -406,8 +406,7 @@ export default function App() {
         <div className="absolute bottom-0 left-0 w-full h-[1000px] bg-gradient-to-b from-transparent via-[#0d0714]/90 to-[#050208] pointer-events-none z-[-1]"></div>
 
         <div className="max-w-5xl mx-auto px-8 mb-32 relative z-10">
-          <div className="liquid-glass p-12 md:p-24 rounded-[3rem] text-center relative overflow-hidden group">
-            <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div className="liquid-glass p-12 md:p-24 rounded-[3rem] text-center relative overflow-hidden">
             <h2 className="text-hero-heading text-4xl md:text-6xl text-white mb-8">Ready to Start Earning with Woofer?</h2>
             <button className="bg-primary-fixed-dim text-on-primary-fixed text-xl px-12 py-5 rounded-full font-bold hover:shadow-[0_0_50px_rgba(115,219,154,0.4)] transition-all active:scale-95">
               Launch App Now

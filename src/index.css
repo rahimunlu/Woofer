@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: #181023;
+  --color-on-background: #ecddf9;
+  --color-primary: #dbffe2;
+  --color-on-primary: #00391d;
+  --color-primary-container: #86efac;
+  --color-on-primary-container: #006d3e;
+  --color-primary-fixed: #8ff8b4;
+  --color-primary-fixed-dim: #73db9a;
+  --color-on-primary-fixed: #00210f;
+  --color-on-primary-fixed-variant: #00522d;
+  --color-surface: #181023;
+  --color-on-surface: #ecddf9;
+  --color-surface-variant: #3a3146;
+  --color-on-surface-variant: #bdcabe;
+  --color-surface-container-lowest: #120a1d;
+  --color-surface-container-low: #20182b;
+  --color-surface-container: #241c2f;
+  --color-surface-container-high: #2f263a;
+  --color-surface-container-highest: #3a3146;
+  --color-outline: #889489;
+  --color-outline-variant: #3e4a40;
+
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Inter", sans-serif;
+
+  --animate-scroll: scroll 30s linear infinite;
+}
+
+@layer utilities {
+  .liquid-glass {
+    background: rgba(47, 38, 58, 0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(136, 148, 137, 0.1);
+  }
+  .text-hero-heading {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+  .text-hero-sub {
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+  }
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}

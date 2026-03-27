@@ -5,6 +5,7 @@
 
 import { Zap, Gamepad2, Wallet, CheckCircle2, Star, Globe, MessageSquare, Send } from 'lucide-react';
 import { HLSVideo } from './components/HLSVideo';
+import { motion } from 'motion/react';
 
 export default function App() {
   return (
@@ -198,18 +199,101 @@ export default function App() {
 
       {/* NUMBERS SECTION */}
       <section className="relative py-48 px-8 flex flex-col items-center justify-center overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-0"></div>
-        <div className="absolute top-0 left-0 w-full h-full z-[-1] overflow-hidden opacity-40">
+        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none z-10"></div>
+        
+        {/* Premium Background Animations */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          {/* Slow panning grid */}
+          <motion.div 
+            className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:100px_100px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black_10%,transparent_100%)]"
+            animate={{
+              backgroundPosition: ['0px 0px', '100px 100px'],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          
+          {/* Floating Aurora Orbs */}
+          <motion.div 
+            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]"
+            animate={{
+              x: [0, 100, -50, 0],
+              y: [0, -50, 100, 0],
+              scale: [1, 1.2, 0.8, 1],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[150px]"
+            animate={{
+              x: [0, -100, 50, 0],
+              y: [0, 100, -50, 0],
+              scale: [1, 0.8, 1.2, 1],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
+
+        <div className="absolute top-0 left-0 w-full h-full z-[-1] overflow-hidden opacity-30 mix-blend-screen">
           <HLSVideo src="https://stream.mux.com/Kec29dVyJgiPdtWaQtPuEiiGHkJIYQAVUJcNiIHUYeo.m3u8" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         </div>
-        <div className="z-10 text-center relative">
-          <div className="text-sm font-label uppercase tracking-[0.4em] text-emerald-300 mb-6">Total Rewards Distributed</div>
-          <div className="text-[8rem] md:text-[15rem] font-headline font-extrabold text-white leading-none tracking-tighter drop-shadow-2xl">
-            $4.7M
+
+        <div className="z-20 text-center relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-sm font-label uppercase tracking-[0.4em] text-emerald-300 mb-6"
+          >
+            Total Rewards Distributed
+          </motion.div>
+          
+          <div className="relative inline-block overflow-hidden pb-4">
+            {/* Sweeping Light Ray over the text */}
+            <motion.div 
+              className="absolute top-0 bottom-0 z-30 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] w-32"
+              animate={{
+                left: ['-100%', '200%'],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatDelay: 5,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="text-[8rem] md:text-[15rem] font-headline font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 leading-none tracking-tighter drop-shadow-2xl relative z-20"
+            >
+              $4.7M
+            </motion.div>
           </div>
-          <p className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto mt-8">
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto mt-8 relative z-20"
+          >
             Across 140 countries, Woofer has become the primary side-hustle for the digital generation.
-          </p>
+          </motion.p>
         </div>
       </section>
 
@@ -269,9 +353,16 @@ export default function App() {
 
       {/* CTA + FOOTER SECTION */}
       <section className="relative pt-48 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full z-[-1] overflow-hidden opacity-30">
+        <div className="absolute top-0 left-0 w-full h-full z-[-2] overflow-hidden opacity-30">
           <HLSVideo src="https://stream.mux.com/tLkHO1qZoaaQOUeVWo8hEBeGQfySP02EPS02BmnNFyXys.m3u8" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         </div>
+        
+        {/* Top Gradient to fade video in smoothly from previous section */}
+        <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#181023] via-[#181023]/80 to-transparent pointer-events-none z-[-1]"></div>
+
+        {/* Smooth Premium Gradient Transition to Footer */}
+        <div className="absolute bottom-0 left-0 w-full h-[1000px] bg-gradient-to-b from-transparent via-[#0d0714]/90 to-[#050208] pointer-events-none z-[-1]"></div>
+
         <div className="max-w-5xl mx-auto px-8 mb-32 relative z-10">
           <div className="liquid-glass p-12 md:p-24 rounded-[3rem] text-center relative overflow-hidden group">
             <div className="absolute inset-0 bg-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -282,7 +373,7 @@ export default function App() {
             <p className="mt-8 text-on-surface-variant/60 font-label uppercase tracking-widest text-xs">Join 150,000+ active users</p>
           </div>
         </div>
-        <footer className="w-full py-16 px-8 md:px-24 grid grid-cols-2 md:grid-cols-5 gap-12 bg-purple-950/40 backdrop-blur-2xl rounded-t-[2rem] shadow-2xl relative z-10">
+        <footer className="w-full py-16 px-8 md:px-24 grid grid-cols-2 md:grid-cols-5 gap-12 relative z-10 border-t border-white/[0.03] mt-16">
           <div className="col-span-2 md:col-span-1">
             <div className="text-xl font-bold text-emerald-300 mb-6">Woofer</div>
             <p className="text-zinc-500 text-sm leading-relaxed mb-6">The obsidian standard for digital rewards. Built for the modern nomad.</p>

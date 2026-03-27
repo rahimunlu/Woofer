@@ -334,7 +334,11 @@ export default function App() {
       </section>
 
       {/* TESTIMONIALS SECTION */}
-      <section className="py-32 px-8">
+      <section className="relative py-32 px-8">
+        {/* Creative glow transition from previous section */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[2px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent blur-sm z-20"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent z-20"></div>
+
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -395,6 +399,10 @@ export default function App() {
 
       {/* CTA + FOOTER SECTION */}
       <section className="relative pt-48 overflow-hidden">
+        {/* Creative glow transition from previous section */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[2px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent blur-sm z-20"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent z-20"></div>
+
         <div className="absolute top-0 left-0 w-full h-full z-[-2] overflow-hidden opacity-30">
           <HLSVideo src="https://stream.mux.com/tLkHO1qZoaaQOUeVWo8hEBeGQfySP02EPS02BmnNFyXys.m3u8" autoPlay loop muted playsInline className="w-full h-full object-cover" />
         </div>

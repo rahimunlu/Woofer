@@ -59,8 +59,13 @@ export default function App() {
     <div className="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container min-h-screen">
       <div className="bg-noise"></div>
       {/* TopNavBar */}
-      <nav className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-3 rounded-full mt-6 mx-auto max-w-5xl bg-purple-950/40 backdrop-blur-xl border border-emerald-500/20 shadow-[0_20px_40px_rgba(24,16,35,0.6)]">
-        <div className="text-2xl font-bold tracking-tighter text-emerald-300">Woofer</div>
+      <nav className="absolute top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4 rounded-full mt-8 mx-auto max-w-5xl bg-[#120a1d]/40 backdrop-blur-2xl border border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+        <div className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center">
+            <div className="w-3 h-3 bg-black rounded-full"></div>
+          </div>
+          Woofer
+        </div>
         <div className="hidden md:flex items-center gap-8">
           <a className="text-zinc-400 hover:text-zinc-100 transition-colors text-sm font-label font-bold uppercase tracking-wider" href="#">How It Works</a>
           <a className="text-emerald-300 font-bold border-b border-emerald-300 text-sm font-label uppercase tracking-wider" href="#">Offers</a>
@@ -73,13 +78,17 @@ export default function App() {
       </nav>
 
       {/* HERO SECTION */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden bg-[#120a1d]">
+        <div className="absolute inset-0 w-full h-full overflow-hidden [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)]">
           <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-100">
             <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260309_042944_4a2205b7-b061-490a-852b-92d9e9955ce9.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/30 to-background"></div>
+          {/* Subtle dark overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-black/20"></div>
         </div>
+        
+        {/* Creative glowing transition orb at the bottom of hero */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[300px] bg-emerald-500/10 blur-[120px] rounded-[100%] pointer-events-none z-0"></div>
         <motion.div variants={staggerContainer} initial="hidden" animate="show" className="relative z-10 max-w-4xl flex flex-col items-center mt-16">
           <motion.div variants={fadeUpItem} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-bold uppercase tracking-widest mb-8">
             <span className="relative flex h-2 w-2">
@@ -119,6 +128,10 @@ export default function App() {
             </div>
           </div>
         </div>
+
+        {/* Creative glow transition to Section 2 - Matching the subtle glow of Section 2-3 */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[2px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent blur-sm z-30"></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-xl h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent z-30"></div>
       </section>
 
       {/* FEATURES SECTION */}
@@ -182,7 +195,11 @@ export default function App() {
 
       {/* CHESS SECTION 1 */}
       <section className="relative py-32 px-8 bg-black">
-        <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#120a1d] via-[#120a1d]/80 to-transparent pointer-events-none z-0"></div>
+        {/* Seamless transition from Section 2 (#120a1d) to black with a creative glow */}
+        <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-[#120a1d] to-black pointer-events-none z-0"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[2px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent blur-sm"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-xl h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent"></div>
+        
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
